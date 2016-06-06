@@ -688,7 +688,7 @@ module Words =
          ("Articulate", "clear; lucid; eloquent")
          ("Clientele", "customers")
          ("Disparity", "an inequality")
-         ("Fly", "-by-night unreliable; disreputable")
+         ("Fly-by-night", "unreliable; disreputable")
          ("Inimical", "hostile")
          ("Mercurial", "volatile; changeable")
          ("Pedant", "person who insists on strict adherence to rules or narrow learning")
