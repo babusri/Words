@@ -50,32 +50,26 @@ type MainPage() =
         layout.Children.Add(Label(Text = "Vocabulary test: # of words " + string(numWords),
                                   TextColor = Color.Yellow))
 
-        // TODO: take common code out from the next 2 Add methods
+
+        let wordButtonClicked() =
+            let wrd = wordsAndMeanings.[index]
+            wordTextEntry.Text <- fst wrd
+            wordsAndMeaningsTextEditor.Text <- ""
+            if (d1 <> null) then
+                d1.Dispose()
+                d1 <- null
+            if (timeSlider.Value > 0.) then
+                d1 <- dispAfterDelay(timeSlider.Value, (snd wrd), wordsAndMeaningsTextEditor)
+            else
+                wordsAndMeaningsTextEditor.Text <- snd wrd
+
         showNextWordButton.Clicked.Add (fun eventargs ->
-                                          let wrd = wordsAndMeanings.[index]
-                                          wordTextEntry.Text <- fst wrd
-                                          wordsAndMeaningsTextEditor.Text <- ""
-                                          if (d1 <> null) then
-                                             d1.Dispose()
-                                             d1 <- null
-                                          if (timeSlider.Value > 0.) then
-                                              d1 <- dispAfterDelay(timeSlider.Value, (snd wrd), wordsAndMeaningsTextEditor)
-                                          else
-                                              wordsAndMeaningsTextEditor.Text <- snd wrd
+                                          wordButtonClicked()
                                           index <- (index + 1) % numWords)
 
         showRandomWordButton.Clicked.Add (fun eventargs ->
                                           index <- rnd.Next(numWords)
-                                          let wrd = wordsAndMeanings.[index]
-                                          wordTextEntry.Text <- fst wrd
-                                          wordsAndMeaningsTextEditor.Text <- ""
-                                          if (d1 <> null) then
-                                             d1.Dispose()
-                                             d1 <- null
-                                          if (timeSlider.Value > 0.) then
-                                              d1 <- dispAfterDelay(timeSlider.Value, (snd wrd), wordsAndMeaningsTextEditor)
-                                          else
-                                              wordsAndMeaningsTextEditor.Text <- snd wrd
+                                          wordButtonClicked()
                                           index <- (index + 1) % numWords)
 
         timeSlider.ValueChanged.Add(fun e ->
