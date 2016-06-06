@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
+    <Compile Include="Pages\Words.fs" />
     <Compile Include="Pages\MainPage.fs" />
   </ItemGroup>
 
