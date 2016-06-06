@@ -8,7 +8,7 @@ open System.Reactive.Concurrency
 type MainPage() =
     inherit ContentPage()
     let rnd = System.Random()
-    let  oneNumberEverySecond = Observable.Interval(TimeSpan.FromSeconds(1.))
+    // let oneNumberEverySecond = Observable.Interval(TimeSpan.FromSeconds(1.))
     let mutable index = 0
     let mutable d1:IDisposable = null
     let wordsAndMeanings = MyDict.Words.wordsAndMeanings
@@ -29,7 +29,12 @@ type MainPage() =
 
     let timeSlider = new Slider(Maximum = 4., Minimum = 0., Value = 2.)
 
-    let countDownLabel = new Label(Text = "",
+    let delayInfoString delay = "Show meaning in " + string(delay) + " seconds"
+    // Change name as this is not a count down label
+    let countDownLabel = new Label(Text = delayInfoString timeSlider.Value,
+                                   TextColor = Color.White,
+                                   BackgroundColor = Color.Black,
+                                   FontAttributes = FontAttributes.Bold,
                                    IsEnabled=false
                                    )
 
@@ -74,8 +79,9 @@ type MainPage() =
 
         timeSlider.ValueChanged.Add(fun e ->
                                     let newval = Math.Round(e.NewValue)
-                                    countDownLabel.Text <- string(newval) + " seconds"
-                                    timeSlider.Value <- newval)
+                                    timeSlider.Value <- newval
+                                    countDownLabel.Text <- delayInfoString timeSlider.Value
+                                    )
 
         resetButton.Clicked.Add (fun _ -> index <- 0)
 
