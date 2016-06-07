@@ -57,7 +57,7 @@ type MainPage() =
 
     do
         let layout = StackLayout()
-        layout.Children.Add(Label(Text = "Vocabulary test: # of words " + string(numWords),
+        layout.Children.Add(Label(Text = "Test your Vocabulary, v1.0, from Babu Srinivasan\n# of words" + string(numWords),
                                   TextColor = Color.Yellow))
 
         let oneSecTimerSubFun x =
