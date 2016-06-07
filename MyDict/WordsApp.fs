@@ -1,8 +1,8 @@
-﻿namespace MyDict
+﻿namespace Words
 
 open Xamarin.Forms
 
 type App() =
     inherit Application()
     do
-        base.MainPage <- new MyDict.MainPage()
+        base.MainPage <- new Words.MainPage()

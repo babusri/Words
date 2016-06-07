@@ -17,5 +17,5 @@ type MainActivity() =
 
         Xamarin.Forms.Forms.Init (this, bundle)
 
-        this.LoadApplication (new MyDict.App ())
+        this.LoadApplication (new Words.App ())
 

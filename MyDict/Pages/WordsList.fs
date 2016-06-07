@@ -1,5 +1,5 @@
-﻿namespace MyDict
-module Words =
+﻿namespace Words
+module WordsList =
 
     let wordsAndMeanings =
         [|

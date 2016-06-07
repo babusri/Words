@@ -1,4 +1,4 @@
-﻿namespace MyDict
+﻿namespace Words
 
 open System
 open Xamarin.Forms
@@ -12,7 +12,7 @@ type MainPage() =
     let mutable index = 0
     let mutable d1:IDisposable = null
     let mutable d2:IDisposable = null
-    let wordsAndMeanings = MyDict.Words.wordsAndMeanings
+    let wordsAndMeanings = Words.WordsList.wordsAndMeanings
 
     let dispAfterDelay (sec:float, str:string, target:Editor) =
         Observable.Timer(TimeSpan.FromSeconds(sec)).Subscribe(fun _ ->
@@ -33,7 +33,7 @@ type MainPage() =
     let delayInfoString(delay) = if (delay > 0.) then
                                      "Show meaning in " + string(delay) + " seconds"
                                  else
-                                     "Show meaning right away"
+                                      ""
 
     // Change name as this is not a count down label
     let countDownLabel = new Label(Text = delayInfoString timeSlider.Value,

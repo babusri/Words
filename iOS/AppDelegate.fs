@@ -12,7 +12,7 @@ type AppDelegate () =
 
     override this.FinishedLaunching (app, options) =
         Forms.Init()
-        this.LoadApplication (new MyDict.App())
+        this.LoadApplication (new Words.App())
         base.FinishedLaunching(app, options)
 
 module Main =
