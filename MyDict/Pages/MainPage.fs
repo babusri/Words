@@ -43,6 +43,7 @@ type MainPage() =
                                    IsEnabled=false
                                    )
 
+    let progressBar = new ProgressBar(Progress=0.0)
     // let fontSize = Device.GetNamedSize(NamedSize.Large:NamedSize, typeof<Label>:Element)
 
     let wordsAndMeaningsTextEditor = new Editor(TextColor = Color.Yellow,
@@ -64,18 +65,21 @@ type MainPage() =
             Device.BeginInvokeOnMainThread(fun _ ->
                                                let y = x + 1
                                                if (y < int(timeSlider.Value)) then
+                                                  progressBar.Progress <- float(y) / timeSlider.Value
                                                   countDownLabel.Text <- string(int(timeSlider.Value) - y)
                                                else
                                                  if (d2 <> null) then
                                                     d2.Dispose()
                                                     d2 <- null
                                                  timeSlider.IsEnabled <- true
-                                                 countDownLabel.Text <- delayInfoString timeSlider.Value)
+                                                 countDownLabel.Text <- delayInfoString timeSlider.Value
+                                                 progressBar.Progress <- 1.0)
 
         let wordButtonClicked() =
             if (timeSlider.Value > 0.) then
                 timeSlider.IsEnabled <- false
                 countDownLabel.Text <- string(timeSlider.Value)
+            progressBar.Progress <- 0.0
             let wrd = wordsAndMeanings.[index]
             wordTextEntry.Text <- fst wrd
             wordsAndMeaningsTextEditor.Text <- ""
@@ -113,6 +117,7 @@ type MainPage() =
                                        showRandomWordButton
                                        timeSlider
                                        countDownLabel
+                                       progressBar
                                        wordTextEntry
                                        wordsAndMeaningsTextEditor
                                        resetButton
