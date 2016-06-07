@@ -41,12 +41,12 @@ type MainPage() =
     // let fontSize = Device.GetNamedSize(NamedSize.Large:NamedSize, typeof<Label>:Element)
 
     let wordsAndMeaningsTextEditor = new Editor(TextColor = Color.Yellow,
-                                           BackgroundColor = Color.Black,
-                                           FontAttributes = FontAttributes.Bold,
-                                           HorizontalOptions = LayoutOptions.Fill,
-                                           VerticalOptions = LayoutOptions.FillAndExpand
-                                           // Editable = false
-                                           )
+                                                BackgroundColor = Color.Black,
+                                                FontAttributes = FontAttributes.Bold,
+                                                HorizontalOptions = LayoutOptions.Fill,
+                                                VerticalOptions = LayoutOptions.FillAndExpand
+                                                // Editable = false
+                                                )
 
     let resetButton = new Button(Text = "Reset Sequence")
 
