@@ -131,7 +131,10 @@ type MainPage() =
                                     )
 
         locationSlider.ValueChanged.Add(fun e ->
-                                            index <- int(e.NewValue)
+                                            // showNextWordButton.Text <- string(index) + ", " + string(e.NewValue) + ", " + string(index = int(e.NewValue))
+                                            if (not ( ((float)index > e.NewValue) &&
+                                                 ( (float(index) - e.NewValue) < 1.0 ))) then
+                                                index <- int(e.NewValue)
                                             startingLetterLabel.Text <- (fst wordsAndMeanings.[index]).[0..0])
 
         List.map layout2.Children.Add ([startingLetterLabel
