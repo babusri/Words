@@ -9,6 +9,7 @@ open Android.Views;
 open Android.Widget;
 open Android.OS;
 
+// [<Activity (Label = "Words", Icon = "@mipmap/ic_launcher", MainLauncher = true, ConfigurationChanges = (ConfigChanges.ScreenSize ||| ConfigChanges.Orientation))>]
 [<Activity (Label = "Words", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = (ConfigChanges.ScreenSize ||| ConfigChanges.Orientation))>]
 type MainActivity() =
     inherit Xamarin.Forms.Platform.Android.FormsApplicationActivity()
@@ -18,4 +19,3 @@ type MainActivity() =
         Xamarin.Forms.Forms.Init (this, bundle)
 
         this.LoadApplication (new Words.App ())
-
