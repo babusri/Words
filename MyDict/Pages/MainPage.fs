@@ -8,6 +8,7 @@ open System.Reactive.Concurrency
 type MainPage() =
     inherit ContentPage()
     let rnd = System.Random()
+    let orange = "FF6A00"
     let oneNumberEverySecond = Observable.Interval(TimeSpan.FromSeconds(1.))
     let mutable index = -1
     let mutable d1:IDisposable = null
@@ -26,7 +27,8 @@ type MainPage() =
                                   // Editable = false
                                   )
 
-    let timeSlider = new Slider(Maximum = 4., Minimum = 0., Value = 2.)
+    let timeSlider = new Slider(Maximum = 4., Minimum = 0., Value = 2.,
+                                HorizontalOptions = LayoutOptions.Fill)
 
     let delayInfoString(delay) = if (delay > 0.) then
                                      "Show meaning in " + string(delay) + " seconds"
@@ -42,7 +44,7 @@ type MainPage() =
                                    IsEnabled=false
                                    )
 
-    let wordsAndMeaningsTextEditor = new Editor(TextColor = Color.Green,
+    let wordsAndMeaningsTextEditor = new Editor(TextColor = Color.FromHex(orange),
                                                 BackgroundColor = Color.Black,
                                                 FontAttributes = FontAttributes.Bold,
                                                 HorizontalOptions = LayoutOptions.Fill,
@@ -82,7 +84,7 @@ type MainPage() =
                                                  startingLetterLabel.IsEnabled <- true
                                                  countDownLabel.Text <- delayInfoString timeSlider.Value)
 
-        let wordButtonClicked(idx) =
+        let wordButtonClicked() =
 
             showNextWordButton.IsEnabled <- false
             showRandomWordButton.IsEnabled <- false
@@ -94,17 +96,13 @@ type MainPage() =
                 d2.Dispose()
                 d2 <- null
 
-            // startingLetterLabel.Text <- (fst wordsAndMeanings.[index]).[0..0]
-
             if (timeSlider.Value > 0.) then
                 timeSlider.IsEnabled <- false
                 locationSlider.IsEnabled <- false
                 // $$ TODO startingLetterLabel.Text <- ""
                 startingLetterLabel.IsEnabled <- false
                 countDownLabel.Text <- string(timeSlider.Value)
-            // locationSlider.Value <- (float(idx) / float(numWords)) * 100.
-            locationSlider.Value <- float(idx)
-            let wrd = wordsAndMeanings.[idx]
+            let wrd = wordsAndMeanings.[index]
             wordTextEntry.Text <- fst wrd
             wordsAndMeaningsTextEditor.Text <- ""
             if (timeSlider.Value > 0.) then
@@ -113,17 +111,18 @@ type MainPage() =
                 d2 <- oneNumberEverySecond.Subscribe(fun x -> oneSecTimerSubFun(int(x)))
             else
                 wordsAndMeaningsTextEditor.Text <- snd wrd
+            locationSlider.Value <- float(index)
             showNextWordButton.IsEnabled <- true
             showRandomWordButton.IsEnabled <- true
 
         showNextWordButton.Clicked.Add (fun eventargs ->
                                         index <- (index + 1) % numWords
-                                        wordButtonClicked(index))
+                                        wordButtonClicked())
 
 
         showRandomWordButton.Clicked.Add (fun eventargs ->
-                                          let index =  rnd.Next(numWords)
-                                          wordButtonClicked(index))
+                                          index <-  rnd.Next(numWords)
+                                          wordButtonClicked())
 
         timeSlider.ValueChanged.Add(fun e ->
                                     let newval = Math.Round(e.NewValue)
@@ -132,8 +131,6 @@ type MainPage() =
                                     )
 
         locationSlider.ValueChanged.Add(fun e ->
-                                          // if (timeSlider.IsEnabled = true) then
-                                            // index <- int(float(numWords) * (e.NewValue / 100.))
                                             index <- int(e.NewValue)
                                             startingLetterLabel.Text <- (fst wordsAndMeanings.[index]).[0..0])
 
