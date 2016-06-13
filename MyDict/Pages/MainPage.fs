@@ -65,8 +65,7 @@ type MainPage() =
                                                               Device.BeginInvokeOnMainThread(fun _ -> target.Text <- str))
     do
         let layout = StackLayout()
-        layout.Children.Add(Label(Text = "Test your Vocabulary, v1.1, from Babu Srinivasan\n# of words" + string(numWords),
-                                  TextColor = Color.Yellow))
+        layout.Children.Add(Label(Text = "Test your Vocabulary, v1.2\nAuthor: Babu Srinivasan\nhttp://blog.srinivasan.biz/android-apps\nNumber of words: " + string(numWords), TextColor = Color.Yellow))
 
         let layout2 = StackLayout(Orientation = StackOrientation.Horizontal)
 
