@@ -8,49 +8,45 @@ open System.Reactive.Concurrency
 type MainPage() =
     inherit ContentPage()
     let rnd = System.Random()
-    let orange = "FF6A00"
+    let ORANGE_COLOR = "FF6A00"
+    let CYAN_COLOR = "00FFFF"  // Not used
+    let LIME_GREEN_MAYBE = "7A9F35"
     let oneNumberEverySecond = Observable.Interval(TimeSpan.FromSeconds(1.))
     let mutable index = -1
     let mutable d1:IDisposable = null
     let mutable d2:IDisposable = null
-    // TODO: replace with sorted list
     let wordsAndMeanings = Words.WordsList.wordsAndMeaningsSorted
 
     let numWords = Array.length(wordsAndMeanings)
     let showNextWordButton = new Button(Text = "Show next word")
     let showRandomWordButton = new Button(Text = "Show random word")
 
-    let wordTextEntry = new Entry(
-                                  Placeholder = "Touch any SHOW button",
-                                  TextColor = Color.Yellow,
-                                  BackgroundColor = Color.Black
-                                  // Editable = false
+    let fontSizeLarge = Device.GetNamedSize(NamedSize.Large, typedefof<Label>)
+
+    let wordTextEntry = new Label(TextColor = Color.FromHex(ORANGE_COLOR),
+                                  BackgroundColor = Color.Black,
+                                  FontSize = fontSizeLarge
                                   )
 
     let timeSlider = new Slider(Maximum = 4., Minimum = 0., Value = 2.,
                                 HorizontalOptions = LayoutOptions.Fill)
 
-    let delayInfoString(delay) = if (delay > 0.) then
-                                     "Show meaning in " + string(delay) + " seconds"
-                                 else
-                                      ""
+    let delayInfoString(delay) = "Show meaning in " + string(delay) + " second" + if (delay > 1.0) then "s" else ""
 
-    // Change name as this is not a count down label
     let countDownLabel = new Label(Text = delayInfoString timeSlider.Value,
                                    XAlign = TextAlignment.Center,
                                    TextColor = Color.Olive,
                                    BackgroundColor = Color.White,
-                                   FontAttributes = FontAttributes.Bold,
-                                   IsEnabled=false
+                                   FontAttributes = FontAttributes.Bold
                                    )
 
-    let wordsAndMeaningsTextEditor = new Editor(TextColor = Color.FromHex(orange),
-                                                BackgroundColor = Color.Black,
-                                                FontAttributes = FontAttributes.Bold,
-                                                HorizontalOptions = LayoutOptions.Fill,
-                                                VerticalOptions = LayoutOptions.FillAndExpand
-                                                // Editable = false
-                                                )
+    let wordsAndMeaningsTextEditor = new Label(TextColor = Color.Yellow,
+                                               BackgroundColor = Color.Black,
+                                               FontSize = fontSizeLarge,
+                                               FontAttributes = FontAttributes.Bold,
+                                               HorizontalOptions = LayoutOptions.Fill,
+                                               VerticalOptions = LayoutOptions.FillAndExpand
+                                               )
 
     let startingLetterLabel = new Label(Text = "A",
                                         YAlign = TextAlignment.Center,
@@ -60,12 +56,12 @@ type MainPage() =
     let locationSlider = new Slider(Maximum = float(numWords-1), Minimum = 0., Value = 0.,
                                     HorizontalOptions = LayoutOptions.FillAndExpand)
 
-    let dispAfterDelay (sec:float, str:string, target:Editor) =
+    let dispAfterDelay (sec:float, str:string, target:Label) =
         Observable.Timer(TimeSpan.FromSeconds(sec)).Subscribe(fun _ ->
                                                               Device.BeginInvokeOnMainThread(fun _ -> target.Text <- str))
     do
         let layout = StackLayout()
-        layout.Children.Add(Label(Text = "Test your Vocabulary, v1.2\nAuthor: Babu Srinivasan\nhttp://blog.srinivasan.biz/android-apps\nNumber of words: " + string(numWords), TextColor = Color.Yellow))
+        layout.Children.Add(Label(Text = "Test your Vocabulary, v1.21\nFor Adi, Tara and friends\nAuthor: Babu Srinivasan\nhttp://blog.srinivasan.biz/android-apps\nNumber of words: " + string(numWords), TextColor = Color.FromHex(LIME_GREEN_MAYBE)))
 
         let layout2 = StackLayout(Orientation = StackOrientation.Horizontal)
 
@@ -127,6 +123,7 @@ type MainPage() =
                                     let newval = Math.Round(e.NewValue)
                                     timeSlider.Value <- newval
                                     countDownLabel.Text <- delayInfoString timeSlider.Value
+                                    countDownLabel.IsVisible <- newval > 0.
                                     )
 
         locationSlider.ValueChanged.Add(fun e ->
