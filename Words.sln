@@ -1,11 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "MyDict", "MyDict\MyDict.fsproj", "{8F5898FC-72DE-4902-9DD1-63035F89883C}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Words", "Words\Words.fsproj", "{8F5898FC-72DE-4902-9DD1-63035F89883C}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "MyDict.iOS", "iOS\MyDict.iOS.fsproj", "{9493BABF-5F19-4625-843F-979098DB9812}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Words.iOS", "iOS\Words.iOS.fsproj", "{9493BABF-5F19-4625-843F-979098DB9812}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "MyDict.Droid", "Droid\MyDict.Droid.fsproj", "{89C8ECD8-B80F-4877-BDB1-5B22A337A1C7}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Words.Droid", "Droid\Words.Droid.fsproj", "{89C8ECD8-B80F-4877-BDB1-5B22A337A1C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

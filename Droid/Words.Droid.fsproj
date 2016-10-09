@@ -6,8 +6,8 @@
     <ProjectGuid>{89C8ECD8-B80F-4877-BDB1-5B22A337A1C7}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{F2A71F9B-5D33-465A-A702-920D77279786}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>MyDict.Droid</RootNamespace>
-    <AssemblyName>MyDict.Droid</AssemblyName>
+    <RootNamespace>Words.Droid</RootNamespace>
+    <AssemblyName>Words.Droid</AssemblyName>
     <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.fs</AndroidResgenFile>
@@ -88,9 +88,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyDict\MyDict.fsproj">
+    <ProjectReference Include="..\Words\Words.fsproj">
       <Project>{8F5898FC-72DE-4902-9DD1-63035F89883C}</Project>
-      <Name>MyDict</Name>
+      <Name>Words</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

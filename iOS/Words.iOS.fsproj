@@ -6,8 +6,8 @@
     <ProjectGuid>{9493BABF-5F19-4625-843F-979098DB9812}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{F2A71F9B-5D33-465A-A702-920D77279786}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MyDict.iOS</RootNamespace>
-    <AssemblyName>MyDict.iOS</AssemblyName>
+    <RootNamespace>Words.iOS</RootNamespace>
+    <AssemblyName>Words.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <ReleaseVersion>1.21</ReleaseVersion>
   </PropertyGroup>
@@ -103,9 +103,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyDict\MyDict.fsproj">
+    <ProjectReference Include="..\Words\Words.fsproj">
       <Project>{8F5898FC-72DE-4902-9DD1-63035F89883C}</Project>
-      <Name>MyDict</Name>
+      <Name>Words</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace MyDict.iOS
+﻿namespace Words.iOS
 
 open System
 open UIKit
@@ -20,4 +20,3 @@ module Main =
     let main args =
         UIApplication.Main(args, null, "AppDelegate")
         0
-

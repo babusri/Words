@@ -1,4 +1,4 @@
-﻿namespace MyDict.Droid
+﻿namespace Words.Droid
 open System.Reflection
 open System.Runtime.CompilerServices
 

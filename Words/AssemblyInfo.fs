@@ -1,13 +1,13 @@
-﻿namespace MyDict
+﻿namespace Words
 open System.Reflection
 open System.Runtime.CompilerServices
 
-[<assembly: AssemblyTitle("MyDict")>]
+[<assembly: AssemblyTitle("Words")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]
 [<assembly: AssemblyProduct("")>]
-[<assembly: AssemblyCopyright("babu")>]
+[<assembly: AssemblyCopyright("Babu Srinivasan")>]
 [<assembly: AssemblyTrademark("")>]
 
 // The assembly version has the format {Major}.{Minor}.{Build}.{Revision}
